@@ -21,6 +21,7 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 import { BsFillImageFill } from "react-icons/bs";
 import usePreviewImg from "../hooks/usePreviewImg";
 
+
 const MessageInput = ({ setMessages }) => {
 	const [messageText, setMessageText] = useState("");
 	const showToast = useShowToast();
@@ -84,6 +85,7 @@ const MessageInput = ({ setMessages }) => {
 	return (
 		<Flex gap={2} alignItems={"center"}>
 			<form onSubmit={handleSendMessage} style={{ flex: 95 }}>
+			  
 				<InputGroup>
 					<Input
 						w={"full"}
