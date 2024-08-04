@@ -158,16 +158,7 @@ const Post = ({ post, postedBy }) => {
             <Actions post={post} />
           </Flex>
 
-          {/* Adsterra Ad Code */}
-          <div className="ad-banner">
-            {/* <!-- Your Adsterra ad code goes here --> */}
-						
-
-            <script
-              type="text/javascript"
-              src="//www.topcreativeformat.com/7261e1bfc0650ea67134150a827d57e6/invoke.js"
-            ></script>
-          </div>
+        
         </Flex>
       </Flex>
     </Link>
