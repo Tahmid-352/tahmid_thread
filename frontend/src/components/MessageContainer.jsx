@@ -21,7 +21,11 @@ import userAtom from "../atoms/userAtom";
 import { useSocket } from "../context/SocketContext.jsx";
 import messageSound from "../assets/sounds/message.mp3";
 import { IoVideocam } from "react-icons/io5";
-import axios from "axios";
+import { Link } from "react-router-dom";
+
+// import Room from "../pages/Room.jsx";
+// import axios from "axios";
+
 
 const MessageContainer = () => {
   const showToast = useShowToast();
@@ -121,45 +125,8 @@ const MessageContainer = () => {
     getMessages();
   }, [showToast, selectedConversation.userId, selectedConversation.mock]);
 
-  const ZEGO_APP_ID = "1684816046";
-  const ZEGO_SERVER_SECRET = "ab8ec43b80c75544772dde29ec54f597";
-
-  const startVideoCall = async () => {
-    try {
-      const { data } = await axios.get("/api/token", {
-        params: {
-          userID: currentUser._id,
-          roomID: selectedConversation._id,
-        },
-      });
-
-      const { token } = data;
-
-      // Create a ZEGO instance and join the room
-      const config = {
-        appID: parseInt(ZEGO_APP_ID),
-        appSign: ZEGO_SERVER_SECRET,
-        userID: currentUser._id,
-        userName: currentUser.username,
-        roomID: selectedConversation._id,
-        token,
-      };
-
-      const ZegoUIKit = window.ZegoUIKitPrebuilt;
-      ZegoUIKit.createWebRTCClient(config)
-        .joinRoom()
-        .then(() => {
-          console.log("Joined the room successfully");
-          // Further setup for video call UI can go here
-        })
-        .catch((err) => {
-          console.error("Failed to join the room", err);
-          showToast("Error", "Failed to start video call", "error");
-        });
-    } catch (error) {
-      showToast("Error", "Failed to start video call", "error");
-    }
-  };
+  
+  
 
   return (
     <Flex
@@ -176,10 +143,11 @@ const MessageContainer = () => {
           {selectedConversation.username}{" "}
           <Image src="/verified.png" w={4} h={4} ml={1} />
         </Text>
+        <Link>
         <IoVideocam
           style={{ marginLeft: "113px", cursor: "pointer" }}
-          onClick={startVideoCall}
         />
+        </Link>
       </Flex>
 
       <Divider />
